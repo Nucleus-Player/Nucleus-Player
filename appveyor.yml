@@ -1,0 +1,38 @@
+version: 1.0.{build}
+environment:
+  nodejs_version: "4.2.2"
+
+platform:
+  - x64
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+
+init:
+- ps: >-
+    $exePath = "$($env:USERPROFILE)\nsis-2.46-setup.exe"
+
+    (New-Object Net.WebClient).DownloadFile('http://ufpr.dl.sourceforge.net/project/nsis/NSIS%202/2.46/nsis-2.46-setup.exe', $exePath)
+
+    cmd /c start /wait $exePath /S /D=C:\nsis
+
+    $env:Path = $env:Path + ";C:\nsis"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  - npm test
+
+build_script:
+- cmd: npm run package-win && npm run build-win32 && npm run build-win64
+
+artifacts:
+  - path: 'dist\built\win\Nucleus Player Setup.exe'
+  - path: 'dist\built\win64\Nucleus Player Setup.exe'
