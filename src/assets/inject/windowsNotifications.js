@@ -56,12 +56,14 @@ FakeNotification.requestPermission = (callback) => {
 };
 
 /** Event Handlers -- Cross Thread **/
+// TODO: Implement this event in the notificationController
 ipcRenderer.on('notification:clicked', (event, id) => {
   if (NOTIFICATIONS[id] && NOTIFICATIONS[id].onclick) {
     NOTIFICATIONS[id].onclick();
   }
 });
 
+// TODO: Implement this event in the notificationController
 ipcRenderer.on('notification:error', (event, details) => {
   const id = details.id;
   if (NOTIFICATIONS[id] && NOTIFICATIONS[id].onerror) {
@@ -69,12 +71,14 @@ ipcRenderer.on('notification:error', (event, details) => {
   }
 });
 
+// TODO: Implement this event in the notificationController
 ipcRenderer.on('notification:closed', (event, id) => {
   if (NOTIFICATIONS[id] && NOTIFICATIONS[id].onclose) {
     NOTIFICATIONS[id].onclose();
   }
 });
 
+// TODO: Implement this event in the notificationController
 ipcRenderer.on('notification:showed', (event, id) => {
   if (NOTIFICATIONS[id] && NOTIFICATIONS[id].onshow) {
     NOTIFICATIONS[id].onshow();

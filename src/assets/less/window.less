@@ -15,7 +15,7 @@ html, body {
 .window-border {
   .fill-parent;
   border: @border-width solid @orange;
-  border-top: 0;
+  border-top-width: 0;
   display: flex;
   flex-direction: column;
 
@@ -33,6 +33,7 @@ html, body {
     .controls {
       height: 100%;
       float: right;
+      padding-right: 0.2em;
       -webkit-user-select: none;
 
       .control {
@@ -59,8 +60,13 @@ html, body {
     }
   }
 
+  .drag-handle-large {
+    display: none;
+  }
+
   .embedded-player-container {
     flex: 1;
+    background: @orange;
 
     .embedded-player {
       height: calc(~"100vh -" (@title-bar-height + @footer-bar-height - 0.1em));
