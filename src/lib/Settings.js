@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 class Settings {
   constructor() {
@@ -14,7 +15,7 @@ class Settings {
     if (fs.existsSync(this.PATH)) {
       this.data = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
     } else {
-      fs.mkdirSync(DIR);
+      mkdirp(DIR);
     }
   }
 

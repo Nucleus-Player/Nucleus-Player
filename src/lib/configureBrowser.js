@@ -6,13 +6,14 @@ module.exports = (electron) => {
   const defaultHeight = screenSize.height * 3 / 4;
   const defaultWidth = screenSize.width * 3 / 4;
 
+
   const baseConfig = {
     width: Settings.get('width', defaultWidth),
     height: Settings.get('height', defaultHeight),
     x: Settings.get('X'),
     y: Settings.get('Y'),
     frame: false,
-    icon: path.resolve(__dirname + '/../build/img/main.png'),
+    icon: path.resolve('./build/img/main.png'),
     fullscreen: false,
     title: 'Nucleus Player',
     nodeIntegration: true,
@@ -21,6 +22,10 @@ module.exports = (electron) => {
   if (process.platform === 'darwin') {
     baseConfig.frame = true;
     baseConfig.titleBarStyle = 'hidden-inset';
+  } else if (process.platform === 'win32') {
+    baseConfig['web-preferences'] = {
+      preload: path.resolve('./build/js/inject/windowsNotifications.js'),
+    };
   }
   return baseConfig;
 };

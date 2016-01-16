@@ -15,6 +15,10 @@ class Emit {
   on(event, fn) {
     ipcMain.on(event, fn);
   }
+
+  once(event, fn) {
+    ipcMain.once(event, fn);
+  }
 }
 
 module.exports = (browser) => {

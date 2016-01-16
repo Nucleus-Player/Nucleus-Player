@@ -8,12 +8,13 @@ const concat = require('gulp-concat');
 const packager = require('electron-packager');
 
 const paths = {
-  clientScripts: 'src/assets/js/**/*.js',
+  clientScripts: ['src/assets/js/**/*.js'],
   externalScripts: ['node_modules/gmusic.js/dist/gmusic.min.js',
                     'node_modules/gmusic-theme.js/dist/gmusic-theme.min.js',
                     'node_modules/gmusic-mini-player.js/dist/gmusic-mini-player.min.js'],
   injectScripts: 'src/assets/inject/**/*.js',
   less: 'src/assets/less/**/*.less',
+  fonts: 'node_modules/materialize-css/dist/font/**/*',
   images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
 };
 
@@ -29,7 +30,8 @@ const defaultPackageConf = {
   icon: './build/img/main',
   out: './dist/',
   overwrite: true,
-  ignore: '.*node_modules\/(?!lodash).*',
+  prune: true,
+  ignore: 'dist/.*',
 };
 
 const cleanGlob = (glob) => {
@@ -40,11 +42,12 @@ const cleanGlob = (glob) => {
 };
 
 gulp.task('clean', cleanGlob('./build'));
-gulp.task('clean-dist', cleanGlob('./dist'));
+gulp.task('clean-dist', cleanGlob('./dist/Nucleus Player-win32-ia32'));
 gulp.task('clean-external', cleanGlob('./build/js/external.js'));
 gulp.task('clean-client', cleanGlob('./build/js/client'));
 gulp.task('clean-inject', cleanGlob('./build/js/inject'));
 gulp.task('clean-less', cleanGlob('./build/css'));
+gulp.task('clean-fonts', cleanGlob('./build/font'));
 gulp.task('clean-images', cleanGlob('./build/img'));
 
 gulp.task('external', ['clean-external'], () => {
@@ -53,7 +56,12 @@ gulp.task('external', ['clean-external'], () => {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('transpile-client', ['clean-client'], () => {
+gulp.task('materialize-js', () => {
+  gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
+    .pipe(gulp.dest('./build/js/client'));
+});
+
+gulp.task('transpile-client', ['clean-client', 'materialize-js'], () => {
   return gulp.src(paths.clientScripts)
     .pipe(babel({
       presets: ['es2015'],
@@ -73,7 +81,12 @@ gulp.task('transpile-inject', ['clean-inject'], () => {
 
 gulp.task('transpile', ['transpile-client', 'transpile-inject']);
 
-gulp.task('less', ['clean-less'], () => {
+gulp.task('fonts', ['clean-fonts'], () => {
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest('./build/font'));
+});
+
+gulp.task('less', ['clean-less', 'fonts'], () => {
   return gulp.src(paths.less)
     .pipe(less())
     .pipe(cssmin())
@@ -96,7 +109,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('package-win', ['clean', 'clean-dist', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), done);
 });
 
 gulp.task('package-darwin', ['clean', 'clean-dist', 'build'], (done) => {

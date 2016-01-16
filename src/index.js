@@ -1,7 +1,7 @@
 'use strict';
 
 if (require('./index_squirrel')) {
-  process.exit();
+  process.exit(0);
 }
 
 const electron = require('electron');
@@ -32,8 +32,8 @@ app.on('ready', () => {
   global.Emit = require('./lib/Emitter.js')(mainWindow);
 
 
-  require('./lib/features')(mainWindow);
-  require('./lib/windows/thumbbarButtons')(mainWindow);
+  require('./lib/features')(mainWindow, app);
+  require('./lib/windows')(mainWindow);
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/public_html/index.html');

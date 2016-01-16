@@ -28,7 +28,7 @@ module.exports = (grunt) => {
         setupIcon: 'src/assets/icons/main.ico',
         certificateFile: '.cert.pfx',
         certificatePassword: process.env.NUCLEUS_CERT_PASS,
-        remoteReleases: 'https://www.github.com/Nucleus-Player/Nucleus-Player-Releases',
+        remoteReleases: 'https://github.com/Nucleus-Player/Nucleus-Player-Releases',
       },
     },
   });
@@ -36,6 +36,6 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-electron-installer');
 
   grunt.registerTask('build:win32', ['create-windows-installer:ia32']);
-  grunt.registerTask('build:win64', ['create-windows-installer:x64']);
-  grunt.registerTask('build:win', ['build:win32', 'build:win64']);
+  // grunt.registerTask('build:win64', ['create-windows-installer:x64']);
+  grunt.registerTask('build:win', ['build:win32'/* , 'build:win64' */]);
 };

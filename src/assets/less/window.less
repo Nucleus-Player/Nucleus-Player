@@ -63,8 +63,29 @@ html, body {
     flex: 1;
 
     .embedded-player {
-      height: calc(~"100vh -" (2 * @border-width + @title-bar-height));
+      height: calc(~"100vh -" (@title-bar-height + @footer-bar-height - 0.1em));
       display: block;
+    }
+  }
+
+  .footer-bar {
+    height: @footer-bar-height;
+    background: @grey;
+    color: black;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+
+    .copyright {
+      float: left;
+      font-size: inherit;
+      padding-left: @border-width;
+    }
+
+    .update-status {
+      float: right;
+      font-size: inherit;
+      padding-right: @border-width;
     }
   }
 }
