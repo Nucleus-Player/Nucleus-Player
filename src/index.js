@@ -1,5 +1,9 @@
 'use strict';
 
+if (require('./index_squirrel')) {
+  process.exit();
+}
+
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
