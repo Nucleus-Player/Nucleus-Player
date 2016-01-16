@@ -19,3 +19,9 @@ ipcRenderer.on('window:mini', () => {
 ipcRenderer.on('window:maxi', () => {
   document.body.classList.remove('mini-player-mode');
 });
+
+ipcRenderer.on('window:set:zoom', (event, i) => {
+  API.run((zoomLevel) => {
+    document.body.style.zoom = zoomLevel;
+  }, (i * 100) + '%');
+});

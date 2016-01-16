@@ -10,6 +10,8 @@ module.exports = (electron) => {
   const baseConfig = {
     width: Settings.get('width', defaultWidth),
     height: Settings.get('height', defaultHeight),
+    minWidth: 960,
+    minHeight: 600,
     x: Settings.get('X'),
     y: Settings.get('Y'),
     frame: false,

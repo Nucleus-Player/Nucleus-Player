@@ -1,6 +1,8 @@
 @import "_variables.less";
 
 .mini-player-mode {
+  overflow: hidden;
+
   .window-border {
     border-width: @border-width-large;
     border-top-width: @border-width-large;
@@ -20,11 +22,7 @@
     }
 
     .embedded-player {
-      height: calc(~"100vh - " (2 * @border-width-large)) !important;
-    }
-
-    .footer-bar {
-      display: none;
+      height: calc(~"100vh - " (2 * @border-width-large) - 0.1em) !important;
     }
   }
 }
