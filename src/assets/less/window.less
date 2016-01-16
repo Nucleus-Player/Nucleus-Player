@@ -66,32 +66,12 @@ html, body {
 
   .embedded-player-container {
     flex: 1;
-    background: @orange;
+    background: @grey;
 
     .embedded-player {
-      height: calc(~"100vh -" (@title-bar-height + @footer-bar-height - 0.1em));
+      height: calc(~"100vh -" (@title-bar-height + @border-width * 2));
       display: block;
-    }
-  }
-
-  .footer-bar {
-    height: @footer-bar-height;
-    background: @grey;
-    color: black;
-    display: flex;
-    align-items: center;
-    font-size: 0.8em;
-
-    .copyright {
-      float: left;
-      font-size: inherit;
-      padding-left: @border-width;
-    }
-
-    .update-status {
-      float: right;
-      font-size: inherit;
-      padding-right: @border-width;
+      transition: opacity 0.4s linear;
     }
   }
 }

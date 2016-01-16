@@ -5,6 +5,7 @@ class InternalAPI {
   constructor() {
     this.queue = [];
     this.ready = false;
+    webview.style.opacity = 0;
 
     webview.addEventListener('did-start-loading', () => {
       this.ready = false;
@@ -12,6 +13,8 @@ class InternalAPI {
 
     webview.addEventListener('did-stop-loading', () => {
       this.ready = true;
+      webview.style.opacity = 1;
+      document.querySelector('.loader').style.opacity = 0;
       _.forEach(this.queue, (item) => {
         this.exec(item);
       });

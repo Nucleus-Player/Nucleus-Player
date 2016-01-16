@@ -5,5 +5,6 @@ const waitForExternal = setInterval(() => {
     if (process.platform === 'win32') {
       require('./windowsNotifications');
     }
+    require('./hideUI');
   }
 }, 10);
