@@ -1,6 +1,7 @@
 {
   "extends": "airbnb/base",
   "globals": {
+    "Logger": true,
     "Settings": true,
     "Emit": true,
     "API": true,
