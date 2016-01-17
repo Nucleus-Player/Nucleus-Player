@@ -1,7 +1,7 @@
 # Nucleus-Player
 
 [![Join the chat at https://gitter.im/Nucleus-Player/Nucleus-Player](https://badges.gitter.im/Nucleus-Player/Nucleus-Player.svg)](https://gitter.im/Nucleus-Player/Nucleus-Player?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-**Mac OSX** [![Build Status](https://travis-ci.org/MarshallOfSound/Nucleus-Player.svg?branch=master)](https://travis-ci.org/MarshallOfSound/Nucleus-Player)
+**Mac OSX** [![Build Status](https://travis-ci.org/Nucleus-Player/Nucleus-Player.svg?branch=master)](https://travis-ci.org/Nucleus-Player/Nucleus-Player)
 **Windows** [![Build status](https://ci.appveyor.com/api/projects/status/aq2pyi185dfkhytu/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/nucleus-player/branch/master)
 
 
