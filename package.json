@@ -12,6 +12,7 @@
     "package:darwin": "gulp package-darwin && npm i",
     "package:win": "gulp package-win && npm i",
     "release:win": "release-nucleus --nucleus-path=./ --release-type=win",
+    "release:darwin": "release-nucleus --nucleus-path=./ --release-type=darwin",
     "test": "npm run lint",
     "start": "electron .",
     "watch": "npm run build && gulp watch"

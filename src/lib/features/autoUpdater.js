@@ -8,9 +8,11 @@ module.exports = () => {
   try {
     let check = true;
 
+    // DEV: Until we get access to a apple codesign cert, mac won't update
     if (process.platform !== 'darwin') {
       autoUpdater.setFeedURL('http://ut.samuel.ninja:6069/update/win/' + require('../../../package.json').version);
     }
+
     autoUpdater.checkForUpdates();
     setInterval(() => {
       if (check) {

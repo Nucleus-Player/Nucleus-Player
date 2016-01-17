@@ -5,7 +5,9 @@ const clean = require('gulp-clean');
 const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
+const fs = require('fs');
 const packager = require('electron-packager');
+const spawn = require('child_process').spawn;
 
 const paths = {
   clientScripts: ['src/assets/js/**/*.js'],
@@ -42,6 +44,7 @@ const cleanGlob = (glob) => {
 };
 
 gulp.task('clean', cleanGlob('./build'));
+gulp.task('clean-build', cleanGlob('./build'));
 gulp.task('clean-dist', cleanGlob('./dist/Nucleus Player-win32-ia32'));
 gulp.task('clean-external', cleanGlob('./build/js/external.js'));
 gulp.task('clean-client', cleanGlob('./build/js/client'));
@@ -113,10 +116,23 @@ gulp.task('package-win', ['clean', 'clean-dist', 'build'], (done) => {
 });
 
 gulp.task('package-darwin', ['clean', 'clean-dist', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), () => {
+    const child = spawn('zip', ['-r', '-y', 'Nucleus\ Player.zip', 'Nucleus\ Player.app'], {
+      cwd: './dist/Nucleus Player-darwin-x64',
+    });
+    //spit stdout to screen
+    child.stdout.on('data', function (data) {   process.stdout.write(data.toString());  });
+    //spit stderr to screen
+    child.stderr.on('data', function (data) {   process.stdout.write(data.toString());  });
+
+    child.on('close', function (code) {
+        console.log("Finished with code " + code);
+        done();
+    });
+  });
 });
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['external', 'transpile', 'images', 'less']);
+gulp.task('build', ['clean-build', 'external', 'transpile', 'images', 'less']);
 gulp.task('package', ['package-win', 'package-darwin']);

@@ -15,5 +15,5 @@ install:
 
 script:
   - npm run test
-  - npm run package-darwin
-  - npm run build-darwin
+  - npm run package:darwin
+  - npm run release:darwin
