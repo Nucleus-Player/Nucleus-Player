@@ -5,7 +5,6 @@ const clean = require('gulp-clean');
 const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
-const fs = require('fs');
 const packager = require('electron-packager');
 const spawn = require('child_process').spawn;
 
@@ -120,14 +119,17 @@ gulp.task('package-darwin', ['clean', 'clean-dist', 'build'], (done) => {
     const child = spawn('zip', ['-r', '-y', 'Nucleus\ Player.zip', 'Nucleus\ Player.app'], {
       cwd: './dist/Nucleus Player-darwin-x64',
     });
-    //spit stdout to screen
-    child.stdout.on('data', function (data) {   process.stdout.write(data.toString());  });
-    //spit stderr to screen
-    child.stderr.on('data', function (data) {   process.stdout.write(data.toString());  });
 
-    child.on('close', function (code) {
-        console.log("Finished with code " + code);
-        done();
+    console.log('Zipping "Nucleus Player.app"'); // eslint-disable-line
+
+    // Send stderr to the main console
+    child.stderr.on('data', (data) => {
+      process.stdout.write(data.toString());
+    });
+
+    child.on('close', (code) => {
+      console.log('Finished zipping with code ' + code); // eslint-disable-line
+      done();
     });
   });
 });
