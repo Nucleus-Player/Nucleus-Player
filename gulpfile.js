@@ -122,6 +122,10 @@ gulp.task('package-darwin', ['clean', 'clean-dist', 'build'], (done) => {
 
     console.log('Zipping "Nucleus Player.app"'); // eslint-disable-line
 
+    // spit stdout to screen
+    child.stdout.on('data', function (data) {   process.stdout.write(data.toString());  });
+
+
     // Send stderr to the main console
     child.stderr.on('data', (data) => {
       process.stdout.write(data.toString());
