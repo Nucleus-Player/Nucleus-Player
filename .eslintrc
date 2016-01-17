@@ -5,6 +5,13 @@
     "Settings": true,
     "Emit": true,
     "API": true,
-    "GPM": true
+    "GPM": true,
+    "mochRequire": true,
+    "MOCH_ELECTRON": true,
+    "sinon": true,
+    "expect": true
+  },
+  "env": {
+    "mocha": true
   }
 }

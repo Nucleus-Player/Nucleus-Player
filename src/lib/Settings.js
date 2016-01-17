@@ -5,15 +5,15 @@ const mkdirp = require('mkdirp');
 
 // DEV: A settings class that stored any data that can be stored as JSON
 class Settings {
-  constructor() {
+  constructor(jsonPrefix, wipeOldData) {
     const DIR = (process.env.APPDATA ||
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local')) +
       '/Nucleus';
-    this.PATH = DIR + '/.settings.json';
+    this.PATH = DIR + '/' + (jsonPrefix || '') + '.settings.json';
     this.data = {};
     this.lastSync = 0;
 
-    if (fs.existsSync(this.PATH)) {
+    if (fs.existsSync(this.PATH) && !wipeOldData) {
       this.data = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
     } else {
       mkdirp(DIR);
