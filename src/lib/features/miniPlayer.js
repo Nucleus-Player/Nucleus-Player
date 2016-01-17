@@ -10,7 +10,7 @@ module.exports = (mainWindow) => {
         browser.unmaximize();
       }
       browser.miniMode = true;
-      browser.setMinimumSize(0, 0);
+      browser.setAspectRatio(1);
       browser.setSize(Settings.get('miniWidth', 310), Settings.get('miniHeight', 310));
       browser.setMaximumSize(310, 310);
     }
@@ -19,20 +19,24 @@ module.exports = (mainWindow) => {
   Emit.on('window:maxi', () => {
     if (browser.miniMode) {
       browser.miniMode = false;
-      browser.setMaximumSize(0, 0);
+      browser.setMaximumSize(20000, 20000);
+      browser.setAspectRatio(0);
+      Emit.fire('window:set:zoom', 1);
       browser.setSize(Settings.get('width', 1200), Settings.get('height', 800));
-      browser.setMinimumSize(960, 600);
     }
   });
 
   let fireEvent;
   browser.on('resize', () => {
+    if (!browser.miniMode) {
+      return;
+    }
     if (fireEvent) {
       clearTimeout(fireEvent);
     }
     // DEV: We don't want this to continuously fire so we'll try make it fire only once
     fireEvent = setTimeout(() => {
-      const dimensions = Math.min(browser.getSize()[0], browser.getSize()[1]);
+      const dimensions = Math.max(browser.getSize()[0], browser.getSize()[1]);
       browser.setSize(dimensions, dimensions);
       Emit.fire('window:set:zoom', (dimensions - 10) / 300);
     }, 100);

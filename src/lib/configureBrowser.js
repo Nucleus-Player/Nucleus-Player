@@ -1,4 +1,6 @@
 const path = require('path');
+const os = require('os');
+const semver = require('semver');
 
 // Takes app as the second param
 module.exports = (electron) => {
@@ -10,8 +12,6 @@ module.exports = (electron) => {
   const baseConfig = {
     width: Settings.get('width', defaultWidth),
     height: Settings.get('height', defaultHeight),
-    minWidth: 960,
-    minHeight: 600,
     x: Settings.get('X'),
     y: Settings.get('Y'),
     frame: false,
@@ -23,8 +23,10 @@ module.exports = (electron) => {
 
   // DEV: OS specific options
   if (process.platform === 'darwin') {
-    baseConfig.frame = true;
-    baseConfig.titleBarStyle = 'hidden-inset';
+    if (semver.satisfies(os.release(), '>=14.0.0')) {
+      baseConfig.frame = true;
+      baseConfig.titleBarStyle = 'hidden-inset';
+    }
   } else if (process.platform === 'win32') {
     baseConfig['web-preferences'] = {
       preload: path.resolve('./build/js/inject/windowsNotifications.js'),

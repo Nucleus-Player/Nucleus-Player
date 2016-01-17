@@ -7,7 +7,7 @@ const mkdirp = require('mkdirp');
 class Settings {
   constructor() {
     const DIR = (process.env.APPDATA ||
-      (process.platform === 'darwin' ? process.env.HOME + 'Library/Preferences' : '/var/local')) +
+      (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local')) +
       '/Nucleus';
     this.PATH = DIR + '/.settings.json';
     this.data = {};
