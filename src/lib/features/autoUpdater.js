@@ -2,6 +2,8 @@
 
 const autoUpdater = require('electron').autoUpdater;
 
+// DEV: This file works, kinda, at the moment.  Untested on mac, and auto closes on windows
+// TODO: Implement an update status UI, possibly inside the settings popup
 module.exports = () => {
   try {
     let check = true;
@@ -30,6 +32,7 @@ module.exports = () => {
     });
 
     autoUpdater.on('update-downloaded', () => {
+      // TODO: Change this to ask before installing
       autoUpdater.quitAndInstall();
     });
   } catch (e) {

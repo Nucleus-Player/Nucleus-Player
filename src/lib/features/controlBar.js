@@ -1,4 +1,5 @@
 module.exports = (browser) => {
+  // DEV: Handle the control bar events and perform the appropriate action
   Emit.on('window:minimize', () => {
     browser.minimize();
   });

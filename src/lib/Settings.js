@@ -3,6 +3,7 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
+// DEV: A settings class that stored any data that can be stored as JSON
 class Settings {
   constructor() {
     const DIR = (process.env.APPDATA ||

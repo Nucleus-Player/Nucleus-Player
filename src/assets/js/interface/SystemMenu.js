@@ -2,6 +2,7 @@
 
 const Menu = require('electron').remote.Menu;
 
+// DEV: This is the app menu that will appear on Macs and Linux
 const template = [
   {
     label: 'View',

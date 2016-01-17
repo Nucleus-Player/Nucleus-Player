@@ -8,6 +8,7 @@ const BrowserWindow = electron.BrowserWindow;
 const screenSize = electron.screen.getPrimaryDisplay().workAreaSize;
 const NOTIFICATION_DURATION = 3000;
 
+// TODO: Document this, looking at it now even I don't really get it...
 class Notification {
   constructor(text, options, feedback) {
     this.options = options;

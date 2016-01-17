@@ -3,6 +3,7 @@
 const electron = require('electron');
 const ipcMain = electron.ipcMain;
 
+// DEV: Wrap the ipcMain object and make it globally available
 class Emit {
   constructor(browser) {
     this.browser = browser;

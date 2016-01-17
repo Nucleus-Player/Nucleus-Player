@@ -21,6 +21,7 @@ module.exports = (electron) => {
     nodeIntegration: true,
   };
 
+  // DEV: OS specific options
   if (process.platform === 'darwin') {
     baseConfig.frame = true;
     baseConfig.titleBarStyle = 'hidden-inset';

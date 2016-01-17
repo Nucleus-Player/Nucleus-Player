@@ -3,7 +3,6 @@
 module.exports = (browser) => {
   const saveState = () => {
     const size = browser.getSize();
-    const contentSize = browser.getContentSize();
     const position = browser.getPosition();
 
     if (!browser.miniMode) {
@@ -12,8 +11,8 @@ module.exports = (browser) => {
       Settings.set('X', position[0]);
       Settings.set('Y', position[1]);
     } else {
-      Settings.set('miniWidth', contentSize[0]);
-      Settings.set('miniHeight', contentSize[1]);
+      Settings.set('miniWidth', size[0]);
+      Settings.set('miniHeight', size[1]);
       Settings.set('miniX', position[0]);
       Settings.set('miniY', position[1]);
     }

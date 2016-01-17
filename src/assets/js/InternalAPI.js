@@ -1,6 +1,10 @@
 const _ = require('lodash');
 const webview = document.querySelector('webview');
 
+// DEV: This is a wrapper around the "webview.executeJavaScript" method that allows
+//      you to pass an actual Javascript function in instead of a string.  This allows
+//      the linter to work correctly along with our babel logic
+
 class InternalAPI {
   constructor() {
     this.queue = [];
@@ -11,6 +15,8 @@ class InternalAPI {
       this.ready = false;
     });
 
+    // DEV: When the webview is ready, fire any executes waiting in the queue and
+    //      hide the loader
     webview.addEventListener('did-stop-loading', () => {
       this.ready = true;
       webview.style.opacity = 1;

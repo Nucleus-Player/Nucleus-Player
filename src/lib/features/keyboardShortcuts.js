@@ -4,7 +4,7 @@ const electron = require('electron');
 const globalShortcut = electron.globalShortcut;
 
 module.exports = () => {
-  // Media Playback Keys
+  // DEV: Media Playback Keys
   setInterval(() => {
     if (!globalShortcut.isRegistered('MediaPlayPause')) {
       globalShortcut.register('MediaPlayPause', Emit.fire.bind(Emit, 'playback:playpause'));

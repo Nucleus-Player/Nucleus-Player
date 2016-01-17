@@ -30,6 +30,7 @@ module.exports = (mainWindow) => {
     if (fireEvent) {
       clearTimeout(fireEvent);
     }
+    // DEV: We don't want this to continuously fire so we'll try make it fire only once
     fireEvent = setTimeout(() => {
       const dimensions = Math.min(browser.getSize()[0], browser.getSize()[1]);
       browser.setSize(dimensions, dimensions);
