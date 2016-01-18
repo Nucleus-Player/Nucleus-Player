@@ -39,6 +39,14 @@ app.on('ready', () => {
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/public_html/index.html');
 
+  const dialog = new (require('./lib/features/DialogWindows/LastFMAuth')(mainWindow))();
+  console.log('Authenticating');
+  dialog.init().then((key) => {
+    console.log('Last FM Key:', key);
+  }).catch(() => {
+    console.log('Error while authenticating');
+  });
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 
