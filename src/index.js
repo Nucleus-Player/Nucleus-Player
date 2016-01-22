@@ -10,6 +10,7 @@ const BrowserWindow = electron.BrowserWindow;  // Module to create native browse
 
 global.Settings = new (require('./lib/Settings'))();
 global.Logger = new (require('./lib/Logger'))();
+global.WindowManager = new (require('./lib/WindowManager'));
 require('./lib/configureApp')(app);
 
 // Keep a global reference of the window object, if you don't, the window will

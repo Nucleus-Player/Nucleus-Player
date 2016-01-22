@@ -22,7 +22,7 @@ module.exports = () => {
 
     autoUpdater.on('checking-for-update', () => {
       check = false;
-      Settings.set('thing1', 'CHECKING');
+      console.log('checking');
     });
 
     autoUpdater.on('update-available', () => {

@@ -5,4 +5,5 @@ module.exports = (mainWindow, app) => {
   require('./persistantWindowState')(mainWindow);
   require('./controlBar')(mainWindow);
   require('./autoUpdater')(app);
+  require('./trayPlayer')(app);
 };

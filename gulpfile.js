@@ -58,12 +58,12 @@ gulp.task('external', ['clean-external'], () => {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('materialize-js', () => {
-  gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
+gulp.task('materialize-js', ['clean-client'], () => {
+  return gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
     .pipe(gulp.dest('./build/js/client'));
 });
 
-gulp.task('transpile-client', ['clean-client', 'materialize-js'], () => {
+gulp.task('transpile-client', ['materialize-js'], () => {
   return gulp.src(paths.clientScripts)
     .pipe(babel({
       presets: ['es2015'],

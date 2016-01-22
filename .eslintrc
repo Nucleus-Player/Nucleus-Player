@@ -4,6 +4,7 @@
     "Logger": true,
     "Settings": true,
     "Emit": true,
+    "WindowManager": true,
     "API": true,
     "GPM": true,
     "mochRequire": true,
