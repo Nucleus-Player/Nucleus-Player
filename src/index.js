@@ -1,17 +1,16 @@
-'use strict';
+import { app, BrowserWindow } from 'electron';
 
-if (require('./index_squirrel')) {
-  process.exit(0);
-}
+import configureApp from './main/configureApp';
+import generateBrowserConfig from './main/configureBrowser';
 
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+import EmitterClass from './main/utils/Emitter';
+import SettingsClass from './main/utils/Settings';
+import WindowManagerClass from './main/utils/WindowManager';
 
-global.Settings = new (require('./lib/Settings'))();
-global.Logger = new (require('./lib/Logger'))();
-global.WindowManager = new (require('./lib/WindowManager'));
-require('./lib/configureApp')(app);
+configureApp(app);
+global.Emitter = new EmitterClass();
+global.WindowManager = new WindowManagerClass();
+global.Settings = new SettingsClass();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -29,27 +28,16 @@ app.on('window-all-closed', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', () => {
-  mainWindow = new BrowserWindow(require('./lib/configureBrowser')(electron, app));
+  // mainWindow = new BrowserWindow(require('./lib/configureBrowser')(electron, app));
+  mainWindow = new BrowserWindow(generateBrowserConfig());
+  global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
-  global.Emit = require('./lib/Emitter.js')(mainWindow);
-
-
-  require('./lib/features')(mainWindow, app);
-  require('./lib/windows')(mainWindow);
+  mainWindow.setPosition(...Settings.get('position'));
+  mainWindow.setSize(...Settings.get('size'));
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/public_html/index.html');
-
-  const dialog = new (require('./lib/features/DialogWindows/LastFMAuth')(mainWindow))();
-  console.log('Authenticating');
-  dialog.init().then((key) => {
-    console.log('Last FM Key:', key);
-  }).catch(() => {
-    console.log('Error while authenticating');
-  });
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  require('./main/features');
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

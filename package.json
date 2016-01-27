@@ -3,7 +3,7 @@
   "productName": "Nucleus Player",
   "version": "1.0.0",
   "description": "An electron wrapper for Google Play Music",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "gulp build",
     "lint": "eslint ./src/ ./test/",
@@ -13,7 +13,7 @@
     "package:win": "gulp package-win && npm i",
     "release:win": "release-nucleus --nucleus-path=./ --release-type=win",
     "release:darwin": "release-nucleus --nucleus-path=./ --release-type=darwin",
-    "test": "npm run lint && npm run test-unit",
+    "test": "npm run lint",
     "test-unit": "electron-mocha ./test -r test/support/prerun.js",
     "start": "electron .",
     "watch": "npm run build && gulp watch"
@@ -50,6 +50,7 @@
     "gulp-electron": "0.0.10",
     "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
+    "jquery": "^2.2.0",
     "materialize-css": "^0.97.5",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",

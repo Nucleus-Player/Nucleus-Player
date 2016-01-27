@@ -3,14 +3,10 @@
   "globals": {
     "Logger": true,
     "Settings": true,
-    "Emit": true,
+    "Emitter": true,
     "WindowManager": true,
-    "API": true,
     "GPM": true,
-    "mochRequire": true,
-    "MOCH_ELECTRON": true,
-    "sinon": true,
-    "expect": true
+    "$": true
   },
   "env": {
     "mocha": true

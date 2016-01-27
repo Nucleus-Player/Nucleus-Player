@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Nucleus Player</title>
-  <link href="../../build/css/core.css" rel="stylesheet" type="text/css" />
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <section class="window-border">
@@ -10,13 +10,13 @@
       <div class="drag-handle"></div>
       <div class="controls">
         <div id="min" class="control">
-          <img src="../../build/img/title-bar/min.png" />
+          <img src="../assets/img/control_bar/min.png" />
         </div>
         <div id="max" class="control">
-          <img src="../../build/img/title-bar/max.png" />
+          <img src="../assets/img/control_bar/max.png" />
         </div>
         <div id="close" class="control">
-          <img src="../../build/img/title-bar/close.png" />
+          <img src="../assets/img/control_bar/close.png" />
         </div>
       </div>
     </header>
@@ -27,12 +27,11 @@
           <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
         </svg>
       </div>
-      <webview src="https://play.google.com/music/listen" class="embedded-player" preload="../../build/js/inject" nodeintegration></webview>
+      <webview src="https://play.google.com/music/listen" class="embedded-player" preload="../inject/GPMInject" nodeintegration></webview>
     </main>
   </section>
   <script>
   document.body.classList.add(process.platform);
-  require('../../build/js/client');
   </script>
 </body>
 </html>
