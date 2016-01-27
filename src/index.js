@@ -32,8 +32,16 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow(generateBrowserConfig());
   global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
-  mainWindow.setPosition(...Settings.get('position'));
-  mainWindow.setSize(...Settings.get('size'));
+  const position = Settings.get('position');
+  let size = Settings.get('size');
+  size = size || [1200, 800];
+
+  if (position) {
+    mainWindow.setPosition(...position);
+  } else {
+    mainWindow.center();
+  }
+  mainWindow.setSize(...size);
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/public_html/index.html');

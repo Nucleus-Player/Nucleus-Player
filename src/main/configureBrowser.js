@@ -27,8 +27,8 @@ export default () => {
   // DEV: OS specific options
   if (process.platform === 'darwin') {
     if (semver.satisfies(os.release(), '>=14.0.0')) {
-      baseConfig.frame = true;
-      baseConfig.titleBarStyle = 'hidden-inset';
+      // baseConfig.frame = true;
+      // baseConfig.titleBarStyle = 'hidden-inset';
     }
   } else if (process.platform === 'win32') {
     // baseConfig['web-preferences'] = {
