@@ -6,7 +6,7 @@ class Settings {
     const DIR = (process.env.APPDATA ||
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local')) +
       '/Nucleus';
-    this.PATH = DIR + '/' + (jsonPrefix || '') + '.settings.json';
+    this.PATH = `${DIR}/${(jsonPrefix || '')}.settings.json`;
     this.data = {};
     this.lastSync = 0;
 

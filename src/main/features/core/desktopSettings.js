@@ -15,7 +15,7 @@ Emitter.on('window:settings', () => {
       preload: path.resolve('./build/inject/generic.js'),
     },
   });
-  desktopSettings.loadURL('file://' + __dirname + '/../../../public_html/desktop_settings.html');
+  desktopSettings.loadURL(`file://${__dirname}/../../../public_html/desktop_settings.html`);
 
   WindowManager.add(desktopSettings);
   WindowManager.forceFocus(desktopSettings);

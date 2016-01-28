@@ -1,2 +1,2 @@
 import './core';
-require('./' + process.platform);
+require(`./${process.platform}`);

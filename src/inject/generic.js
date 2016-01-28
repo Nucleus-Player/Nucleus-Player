@@ -5,7 +5,7 @@ import SettingsController from '../main/utils/Settings';
 global.Settings = new SettingsController();
 Settings.uncouple();
 
-require('./' + process.platform);
+require(`./${process.platform}`);
 
 const waitForBody = setInterval(() => {
   if (document.body) {

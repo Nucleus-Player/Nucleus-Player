@@ -44,7 +44,7 @@ app.on('ready', () => {
   mainWindow.setSize(...size);
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/public_html/index.html');
+  mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
   require('./main/features');
 
   // Emitted when the window is closed.
