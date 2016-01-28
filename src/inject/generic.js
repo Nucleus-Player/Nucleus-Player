@@ -13,6 +13,7 @@ const waitForBody = setInterval(() => {
     if (Settings.get('theme')) {
       document.body.setAttribute('theme', 'on');
     }
+    require('electron').remote.getCurrentWindow().show();
   }
 }, 10);
 

@@ -7,7 +7,10 @@ Emitter.on('window:settings', () => {
     width: 800,
     height: 400,
     frame: false,
+    show: false,
     nodeIntegration: true,
+    icon: path.resolve('./build/assets/img/main.png'),
+    title: 'Settings',
     'web-preferences': {
       preload: path.resolve('./build/inject/generic.js'),
     },
@@ -15,4 +18,5 @@ Emitter.on('window:settings', () => {
   desktopSettings.loadURL('file://' + __dirname + '/../../../public_html/desktop_settings.html');
 
   WindowManager.add(desktopSettings);
+  WindowManager.forceFocus(desktopSettings);
 });

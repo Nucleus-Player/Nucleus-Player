@@ -14,6 +14,7 @@ export default () => {
     height: Settings.get('height', defaultHeight),
     x: Settings.get('X'),
     y: Settings.get('Y'),
+    show: false,
     frame: false,
     icon: path.resolve('./build/assets/img/main.png'),
     fullscreen: false,

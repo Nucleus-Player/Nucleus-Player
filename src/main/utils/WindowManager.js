@@ -5,6 +5,8 @@ class WindowManager {
     this.windows = {};
     this.nameReferences = {};
     this.IDMap = {};
+
+    this.focus = [null];
   }
 
   add(window, name = null) {
@@ -13,6 +15,14 @@ class WindowManager {
     this.IDMap[window.id] = newID;
     window.on('close', () => {
       delete this.windows[newID];
+    });
+    window.on('focus', () => {
+      const focusIndex = _.findLastIndex(this.focus, (win) => {
+        return win !== null;
+      });
+      if (focusIndex && focusIndex >= 0 && this.focus[focusIndex].id !== window.id) {
+        this.focus[focusIndex].focus();
+      }
     });
     if (name) {
       this.nameReferences[name] = this.nameReferences[name] || [];
@@ -40,6 +50,14 @@ class WindowManager {
       }
     });
     return toReturn;
+  }
+
+  forceFocus(window) {
+    const index = this.focus.length;
+    this.focus.push(window);
+    window.on('close', () => {
+      this.focus[index] = null;
+    });
   }
 
   close(windowID) {
