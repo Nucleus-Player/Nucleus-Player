@@ -1,4 +1,5 @@
 import './themeSettings';
+import './audioSelection';
 
 document.body.classList.add(process.platform);
 

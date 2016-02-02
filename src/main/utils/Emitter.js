@@ -10,6 +10,10 @@ class Emitter {
     ipcMain.on('passback:main', (event, details) => {
       this.sendToWindowsOfName('main', details.event, details.details);
     });
+
+    ipcMain.on('passback:all', (event, details) => {
+      this.sendToAll(details.event, details.details);
+    });
   }
 
   _send(window, event, details) {

@@ -28,13 +28,14 @@
         <div class="row">
           <div class="col s12">
             <ul class="tabs">
-              <li class="tab col s3"><a href="#test1" class="theme-text orange-text">Theme</a></li>
-              <li class="tab col s3"><a href="#test2" class="theme-text orange-text">Mini Player</a></li>
-              <li class="tab col s3"><a href="#test3" class="theme-text orange-text">Last.FM</a></li>
-              <li class="tab col s3"><a href="#test4" class="theme-text orange-text">Hotkeys</a></li>
+              <li class="tab col s3"><a href="#theme" class="theme-text orange-text">Theme</a></li>
+              <li class="tab col s3"><a href="#mini" class="theme-text orange-text">Mini Player</a></li>
+              <li class="tab col s3"><a href="#lastfm" class="theme-text orange-text">Last.FM</a></li>
+              <li class="tab col s3"><a href="#hotkeys" class="theme-text orange-text">Hotkeys</a></li>
+              <li class="tab col s3"><a href="#audio" class="theme-text orange-text">Audio</a></li>
             </ul>
           </div>
-          <div id="test1" class="col s12 settings-box">
+          <div id="theme" class="col s12 settings-box">
             <div>
               <p>
                 <input type="checkbox" class="filled-in" id="theme-state" checked="checked" />
@@ -62,9 +63,15 @@
               <div class="color-square brown"></div>
             </div>
           </div>
-          <div id="test2" class="col s12">Mini Player Settings</div>
-          <div id="test3" class="col s12">Last.FM Settings</div>
-          <div id="test4" class="col s12">Hotkey Settings</div>
+          <div id="mini" class="col s12">Mini Player Settings</div>
+          <div id="lastfm" class="col s12">Last.FM Settings</div>
+          <div id="hotkeys" class="col s12">Hotkey Settings</div>
+          <div id="audio" class="col s12">
+            <div class="input-field col s12">
+              <select id="audioOutputSelect"></select>
+              <label>Audio Output Device</label>
+            </div>
+          </div>
         </div>
       </div>
     </main>

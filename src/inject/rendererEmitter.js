@@ -56,6 +56,17 @@ class Emitter {
     }
   }
 
+  fireAtAll(event, details) {
+    if (this.ready) {
+      ipcRenderer.send('passback:all', {
+        event,
+        details,
+      });
+    } else {
+      this.q.push(this.fireAtAll.bind(this, event, details));
+    }
+  }
+
   fireAtMain(event, details) {
     if (this.ready) {
       ipcRenderer.send('passback:main', {
